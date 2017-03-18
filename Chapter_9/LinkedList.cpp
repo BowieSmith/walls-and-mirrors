@@ -188,3 +188,31 @@ bool LinkedList<ItemType>::operator==(const LinkedList<ItemType>& rightOperand) 
 	}
 	return isEqual;
 }
+
+template<class ItemType>
+LinkedList<ItemType>& LinkedList<ItemType>::operator=(const LinkedList<ItemType>& rightOperand)
+{
+	if (this != &rightOperand)
+	{
+		this->clear();
+
+		itemCount = rightOperand.itemCount;
+
+		if (rightOperand.headPtr != nullptr)
+		{
+			headPtr = std::make_shared<Node<ItemType>>(rightOperand.headPtr->getItem());
+
+			auto thisChain = headPtr;
+			auto otherChain = rightOperand.headPtr->getNext();
+
+			while (otherChain != nullptr)
+			{
+				thisChain->setNext(std::make_shared<Node<ItemType>>(otherChain->getItem()));
+				thisChain = thisChain->getNext();
+				otherChain = otherChain->getNext();
+			}
+			thisChain->setNext(nullptr);
+		}
+	}
+	return *this;
+}

@@ -31,6 +31,7 @@ private:
 	std::shared_ptr<Node<ItemType>> headPtr;
 	int itemCount;
 	auto getNodeAt(int position) const;
+	void copyListNodes(const LinkedList<ItemType>& otherList);
 };
 
 #include "LinkedList.cpp"

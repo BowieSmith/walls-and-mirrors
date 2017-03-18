@@ -49,12 +49,15 @@ int main()
 	intLinkedList.insert(10, 1);
 	test(intLinkedList);
 
-	LinkedList<int> copiedList(intLinkedList);
+	LinkedList<int> copiedList;
+	copiedList = intLinkedList;
 	test(copiedList);
 	
 	if (intLinkedList == copiedList)
 	{
-		std::cout << "The lists are equal! The overloaded operator '==' worked!" << std::endl;
+		std::cout << "The lists are equal!\n"
+		   		  << "The overloaded assignment operator worked!\n"
+				  << "The overloaded equality operator worked!\n\n";
 	}
 
 	return 0;

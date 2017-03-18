@@ -24,6 +24,7 @@ public:
 	void clear();
 	ItemType getEntry(int position) const throw(PrecondViolatedExcept);
 	ItemType replace(int position, const ItemType& newEntry) throw(PrecondViolatedExcept);
+	bool operator==(const LinkedList<ItemType>& rightOperand) const;
 
 private:
 	std::shared_ptr<Node<ItemType>> headPtr;

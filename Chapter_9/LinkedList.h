@@ -25,6 +25,7 @@ public:
 	ItemType getEntry(int position) const throw(PrecondViolatedExcept);
 	ItemType replace(int position, const ItemType& newEntry) throw(PrecondViolatedExcept);
 	bool operator==(const LinkedList<ItemType>& rightOperand) const;
+	LinkedList<ItemType>& operator=(const LinkedList<ItemType>& rightOperand);
 
 private:
 	std::shared_ptr<Node<ItemType>> headPtr;

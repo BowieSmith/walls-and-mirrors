@@ -51,6 +51,11 @@ int main()
 
 	LinkedList<int> copiedList(intLinkedList);
 	test(copiedList);
+	
+	if (intLinkedList == copiedList)
+	{
+		std::cout << "The lists are equal! The overloaded operator '==' worked!" << std::endl;
+	}
 
 	return 0;
 }

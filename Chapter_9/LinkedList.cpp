@@ -164,3 +164,27 @@ ItemType LinkedList<ItemType>::replace(int position, const ItemType& newEntry) t
 		throw PrecondViolatedExcept("replace() called with empty list on invalid position");
 	}
 }
+
+template<class ItemType>
+bool LinkedList<ItemType>::operator==(const LinkedList<ItemType>& rightOperand) const
+{
+	bool isEqual = true; // assume equal
+	
+	if (itemCount != rightOperand.getLength())
+	{
+		isEqual = false;
+	}
+	else
+	{
+		auto leftSidePtr = headPtr;
+		auto rightSidePtr = rightOperand.headPtr;
+
+		while ((leftSidePtr != nullptr) && (rightSidePtr != nullptr) && isEqual)
+		{
+			isEqual =  (leftSidePtr->getItem() == rightSidePtr->getItem());
+			leftSidePtr = leftSidePtr->getNext();
+			rightSidePtr = rightSidePtr->getNext();
+		}
+	}
+	return isEqual;
+}

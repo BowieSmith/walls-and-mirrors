@@ -17,6 +17,7 @@ public:
 	virtual ItemType getEntry(int position) const = 0;
 	virtual ItemType replace(int position, const ItemType& newEntry) = 0;
 	virtual ~ListInterface() {}
+	virtual bool operator==(const ListInterface<ItemType>& rightOperand) const = 0;
 };
 
 #endif

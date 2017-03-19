@@ -1,5 +1,6 @@
 #include "LinkedList.h"
 #include <cassert>
+#include <iostream>
 
 template<class ItemType>
 LinkedList<ItemType>::LinkedList() : itemCount(0)
@@ -215,4 +216,42 @@ LinkedList<ItemType>& LinkedList<ItemType>::operator=(const LinkedList<ItemType>
 		}
 	}
 	return *this;
+}
+
+template<class ItemType>
+LinkedList<ItemType> LinkedList<ItemType>::operator+(const LinkedList<ItemType>& rightOperand) const
+{
+	LinkedList<ItemType> concatList;
+	LinkedList<ItemType> leftChain(*this);
+	LinkedList<ItemType> rightChain(rightOperand);
+
+	auto currentPtr = leftChain.headPtr;
+	auto prevPtr = currentPtr;
+
+	while (currentPtr != nullptr)
+	{
+		prevPtr = currentPtr;
+		currentPtr = currentPtr->getNext();
+	}
+
+	prevPtr->setNext(rightChain.headPtr);
+
+	concatList.headPtr = leftChain.headPtr;
+	concatList.itemCount = itemCount + rightOperand.itemCount;
+	return concatList;
+}
+
+template<class friendItemType>
+std::ostream& operator<<(std::ostream& outputStream,
+						 const LinkedList<friendItemType>& outputList)
+{
+	int position = 1;
+	auto curPtr = outputList.headPtr;
+	while (curPtr != nullptr)
+	{
+		outputStream << position << "\t" << curPtr->getItem() << std::endl;
+		curPtr = curPtr->getNext();
+		position++;
+	}
+	return outputStream;
 }

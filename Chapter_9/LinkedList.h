@@ -26,6 +26,11 @@ public:
 	ItemType replace(int position, const ItemType& newEntry) throw(PrecondViolatedExcept);
 	bool operator==(const LinkedList<ItemType>& rightOperand) const;
 	LinkedList<ItemType>& operator=(const LinkedList<ItemType>& rightOperand);
+	LinkedList<ItemType> operator+(const LinkedList<ItemType>& rightOperand) const;
+
+	template<class friendItemType>
+	friend std::ostream& operator<<(std::ostream& outputStream,
+									const LinkedList<friendItemType>& outputList);
 
 private:
 	std::shared_ptr<Node<ItemType>> headPtr;

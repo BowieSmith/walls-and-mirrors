@@ -60,5 +60,10 @@ int main()
 				  << "The overloaded equality operator worked!\n\n";
 	}
 
+	LinkedList<int> concatenatedList = intLinkedList + copiedList;
+	test(concatenatedList);
+
+	std::cout << concatenatedList;
+
 	return 0;
 }

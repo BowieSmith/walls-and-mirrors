@@ -6,19 +6,16 @@
 
 int main()
 {
-	ArrayMaxHeap<int> intMaxHeap;
-	intMaxHeap.add(666);
-	std::cout << intMaxHeap.peekTop();
-	
 	std::srand(std::time(NULL));
 	HeapPriorityQueue<int> intPriorityQueue;
 	int rand;
-	
-	std::cout << "Before loop!" << std::endl;
-	for (int i = 0; i < 20; i++)
+
+	for (int i = 0; i < 10; i++)
 	{
-		std::cout << "Start loop!" << std::endl;
 		rand = std::rand();
+		std::cout << "System Time: " << rand << std::endl;
+		rand = rand % 100;
+		std::cout << "Random Number (% 100): " << rand << std::endl;
 		intPriorityQueue.enqueue(rand);
 	}
 

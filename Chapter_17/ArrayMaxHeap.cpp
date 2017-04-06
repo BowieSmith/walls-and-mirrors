@@ -63,6 +63,7 @@ void ArrayMaxHeap<ItemType>::heapCreate()
 template<class ItemType>
 ArrayMaxHeap<ItemType>::ArrayMaxHeap() : itemCount(0), maxItems(DEFAULT_CAPACITY)
 {
+	items = std::make_unique<ItemType[]>(maxItems);
 }
 
 template<class ItemType>
@@ -114,26 +115,29 @@ ItemType ArrayMaxHeap<ItemType>::peekTop() const throw(PrecondViolatedExcept)
 template<class ItemType>
 bool ArrayMaxHeap<ItemType>::add(const ItemType& newItem)
 {
-	items[itemCount] = newItem;
-
-	int newItemIndex = itemCount;
 	bool inPlace = false;
-
-	while ((newItemIndex >= 0) && !inPlace)
+	if (itemCount < maxItems)
 	{
-		int parentIndex = getParentIndex(newItemIndex);
-		if (items[newItemIndex] <= items[parentIndex])
-		{
-			inPlace = true;
-		}
-		else
-		{
-			std::swap(items[newItemIndex], items[parentIndex]);
-			newItemIndex = parentIndex;
-		}
-	}
+		items[itemCount] = newItem;
 
-	itemCount++;
+		int newItemIndex = itemCount;
+
+		while ((newItemIndex >= 0) && !inPlace)
+		{
+			int parentIndex = getParentIndex(newItemIndex);
+			if (items[newItemIndex] <= items[parentIndex])
+			{
+				inPlace = true;
+			}
+			else
+			{
+				std::swap(items[newItemIndex], items[parentIndex]);
+				newItemIndex = parentIndex;
+			}
+		}
+
+		itemCount++;
+	}
 	return inPlace;
 }
 

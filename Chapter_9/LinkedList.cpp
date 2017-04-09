@@ -241,6 +241,18 @@ LinkedList<ItemType> LinkedList<ItemType>::operator+(const LinkedList<ItemType>&
 	return concatList;
 }
 
+template<class ItemType>
+LinkedIterator<ItemType> LinkedList<ItemType>::begin()
+{
+	return LinkedIterator<ItemType>(this, headPtr);
+}
+
+template<class ItemType>
+LinkedIterator<ItemType> LinkedList<ItemType>::end()
+{
+	return LinkedIterator<ItemType>(this, nullptr);
+}
+
 template<class friendItemType>
 std::ostream& operator<<(std::ostream& outputStream,
 						 const LinkedList<friendItemType>& outputList)

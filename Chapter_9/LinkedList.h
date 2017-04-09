@@ -6,6 +6,7 @@
 #include "ListInterface.h"
 #include "Node.h"
 #include "PrecondViolatedExcept.h"
+#include "LinkedIterator.h"
 #include <memory>
 
 template<class ItemType>
@@ -27,6 +28,9 @@ public:
 	bool operator==(const LinkedList<ItemType>& rightOperand) const;
 	LinkedList<ItemType>& operator=(const LinkedList<ItemType>& rightOperand);
 	LinkedList<ItemType> operator+(const LinkedList<ItemType>& rightOperand) const;
+
+	LinkedIterator<ItemType> begin();
+	LinkedIterator<ItemType> end();
 
 	template<class friendItemType>
 	friend std::ostream& operator<<(std::ostream& outputStream,
